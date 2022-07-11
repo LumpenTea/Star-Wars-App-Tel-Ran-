@@ -1,0 +1,7 @@
+body {
+  margin: 0;
+  font-family: 'Poller One', cursive;
+  color: goldenrod;
+  background-image: url(./images/sky.jpg);
+  background-attachment: fixed;
+}
