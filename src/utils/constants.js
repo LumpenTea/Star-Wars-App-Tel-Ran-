@@ -7,3 +7,7 @@ import friend6 from '../images/friend6.jpg';
 import friend7 from '../images/friend7.jpg';
 import friend8 from '../images/friend8.jpg';
 import friend9 from '../images/friend9.jpg';
+
+export const friends = [
+    friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9
+]
