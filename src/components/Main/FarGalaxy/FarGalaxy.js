@@ -1,6 +1,8 @@
+import styles from './farGalaxy.module.css';
+
 const FarGalaxy = () => {
     return(
-        <p className='farGalaxy'>It is a period of civil war.
+        <p className={styles.farGalaxy}>It is a period of civil war.
             Rebel spaceships, striking
             from a hidden base, have won
             their first victory against

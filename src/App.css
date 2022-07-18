@@ -25,12 +25,6 @@ footer {
     font-size: 0.8em;
 }
 
-.email {
-    font-size: 1.2em;
-    color: black;
-    /* font-variant: small-caps; */
-}
-
 /*main*/
 .left {
     margin: 5px 15px 0 5px;
@@ -45,21 +39,6 @@ footer {
 .border {
     border-radius: 0 0 15px 15px; 
     border-color: goldenrod !important;
-}
-
-.farGalaxy {
-    font-size: 1.5em;
-    letter-spacing: 0.2em;
-    line-height: 1.6;
-    text-align: justify;
-}
-
-.bottomRight {
-    border-bottom-right-radius: 15px;
-}
-
-.bottomLeft {
-    border-bottom-left-radius: 15px;
 }
 
 .float-start > img {
