@@ -1,13 +1,13 @@
 .grid{
     height: fit-content;
-    width: 65vw;
+    width: 55vw;
     margin: 0 auto;
     margin-bottom: 10px;
     justify-content: center;
     display: grid;
     grid-template-rows: 50px 50px 50px 200px;
-    backdrop-filter: invert(.2);
-    border-radius: 5%;
+    background-color: rgba(60, 69, 67, 0.6);
+    border-radius: 15px;
 }
 
 input, select, textarea{
@@ -16,7 +16,21 @@ input, select, textarea{
     border-bottom: 2px solid goldenrod;
     color: goldenrod;
     margin-top: 20px;
-    width: 60vw;
+    width: 50vw;
+}
+
+select{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+select::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+option{
+    background-color: black;
 }
 
 textarea{

@@ -35,7 +35,7 @@ class Contact extends React.Component {
           <input type='text' placeholder='Last Name'></input>
 
           <select>
-            {this.state.planets.map(value => <option>{value}</option>)}
+            {this.state.planets.map(value => <option key={value}>{value}</option>)}
           </select>
 
           <textarea placeholder='Your message'></textarea>

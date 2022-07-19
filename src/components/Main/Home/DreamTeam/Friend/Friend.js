@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './friend.module.css'
 
-const Friend = ({ photo, number }) => {
+const Friend = ({ photo, number, zoomImage, zoom }) => {
 
-    let friendStyle = 'col-sm-4 p-1 '
+    let friendStyle = zoom ? `${styles.bigBorder} col-sm-12 p-2` : 'col-sm-4 p-1 ';
 
     if (number === 7) {
         friendStyle += styles.bottomLeft;
@@ -13,7 +13,7 @@ const Friend = ({ photo, number }) => {
     }
 
     return (
-        <img src={photo} className={friendStyle} alt='friend'></img>
+        <img onClick={() => zoomImage(photo, !zoom)} src={photo} className={friendStyle} alt='friend'></img>
     )
 }
 
