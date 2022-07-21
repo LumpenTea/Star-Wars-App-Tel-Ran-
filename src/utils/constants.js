@@ -10,10 +10,15 @@ import friend8 from '../images/friend8.jpg';
 import friend9 from '../images/friend9.jpg';
 
 
-const checkTime = (time) => {
-    const thirtyDaysMiliseconds = 60 * 60 * 24 * 30;
-    const timeAndThirty = +time + thirtyDaysMiliseconds;
-    return Date.now() > timeAndThirty;
+const checkTime = () => {
+    if (localStorage.getItem('time')) {
+        const thirtyDaysMiliseconds = 60 * 60 * 24 * 30 * 1000;
+        const timeAndThirty = +localStorage.getItem('time') + thirtyDaysMiliseconds;
+        return Date.now() > timeAndThirty;
+    } else {
+        localStorage.setItem('time', JSON.stringify(Date.now()));
+        checkTime(); //never get in else again until deleting time from local storage
+    }
 }
 
 export const appData = {
@@ -35,11 +40,3 @@ export const appData = {
         }
     }
 }
-
-export const friends = [
-    friend1, friend2, friend3, friend4, friend5, friend6, friend7, friend8, friend9
-]
-
-export const StarWarsInfo = `Star Wars is an American epic space-opera[1] multimedia franchise created by George Lucas, which began with the eponymous 1977 film[b] and quickly became a worldwide pop-culture phenomenon. The franchise has been expanded into various films and other media, including television series, video games, novels, comic books, theme park attractions, and themed areas, comprising an all-encompassing fictional universe.[c] In 2020, its total value was estimated at US$70 billion, and it is currently the fifth-highest-grossing media franchise of all time.`;
-
-export const base_url = 'https://sw-info-api.herokuapp.com';

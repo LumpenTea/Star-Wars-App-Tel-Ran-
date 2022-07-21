@@ -12,7 +12,7 @@ const Main = ({ currentPage, main, navItems }) => {
         case navItems[2]:
             return <StarWars starWarsPage={main.starWarsPage} />
         case navItems[3]:
-            return <Contact base_url={main.base_url} />
+            return <Contact base_url={main.base_url} checkTime={main.functions.checkTime} />
         default: return <Home main={main} />
     }
 }

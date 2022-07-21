@@ -8,9 +8,7 @@ import { appData } from './utils/constants'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App appData={appData} />
-  </React.StrictMode>
+  <App appData={appData} />
 );
 
 // If you want to start measuring performance in your app, pass a function

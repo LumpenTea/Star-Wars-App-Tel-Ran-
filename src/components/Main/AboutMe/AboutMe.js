@@ -20,7 +20,7 @@ class AboutMe extends React.Component {
   //if false -> set info to state from local storage -> set new time
 
   getHeroData = async () => {
-    if (!localStorage.getItem('time') || this.props.checkTime(localStorage.getItem('time'))) {
+    if (this.props.checkTime() || !localStorage.getItem('info')) {
       const response = await fetch(`${this.props.base_url}/v1/peoples/1`);
       const data = await response.json();
       this.setState({
@@ -33,9 +33,7 @@ class AboutMe extends React.Component {
           weight: data.mass + 'kg',
           height: data.height
         }
-      });
-      localStorage.setItem('info', JSON.stringify(this.state.info));
-      localStorage.setItem('time', Date.now().toString());
+      }, () => localStorage.setItem('info', JSON.stringify(this.state.info)))
     } else {
       const info = JSON.parse(localStorage.getItem('info'));
       this.setState({isLoading: false, info: info});

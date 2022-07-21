@@ -11,16 +11,18 @@ class Contact extends React.Component {
     }
   }
 
-  componentDidMount(){
-    fetch(`${this.props.base_url}/v1/planets`)
-      .then(response => response.json())
-      .then(data => {
-        let planetsArray = data.map(value => value.name)
-        this.setState({
-          isLoading: false,
-          planets: planetsArray
-        })
-      })
+  getPlanets = async () => {
+    if (this.props.checkTime() || !localStorage.getItem('planets')) {
+      const response = await fetch(`${this.props.base_url}/v1/planets`);
+      const data = await response.json();
+      this.setState({isLoading: false, planets: data.map(planet => planet.name)}, () => localStorage.setItem('planets', this.state.planets.toString()));
+    } else {
+      this.setState({isLoading: false, planets: localStorage.getItem('planets').split(',')})
+    }
+  }
+
+  componentDidMount() {
+    this.getPlanets();
   }
 
   render() {

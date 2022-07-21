@@ -16,7 +16,7 @@ class FarGalaxy extends React.Component {
         const response = await fetch(`${this.props.base_url}/v1/films/${film}`);
         const data = await response.json();
         this.setState({opening_crawl: data.opening_crawl});
-        sessionStorage.setItem('opening_crawl', this.state.opening_crawl);
+        sessionStorage.setItem('opening_crawl', data.opening_crawl);
     }
 
     componentDidMount(){
