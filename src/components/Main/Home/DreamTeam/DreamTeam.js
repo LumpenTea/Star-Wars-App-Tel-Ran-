@@ -8,31 +8,31 @@ class DreamTeam extends React.Component {
         super(props)
 
         this.state = {
-            zoom: false,
+            zoomOut: true,
             photo: null
         }
     }
 
     zoomImage = (photo, zoom) => {
         this.setState({
-            zoom: zoom,
+            zoomOut: zoom,
             photo: photo
         })
     }
 
     render() {
-        if (!this.state.zoom) {
+        if (this.state.zoomOut) {
             return (
                 <section className={`float-end mx-1 row ${styles.border} ${styles.box}`}>
                     <h2 className='col-sm-12 text-center'>Dream Team</h2>
-                    {this.props.dreamTeam.map((value, index) => <Friend zoomImage={this.zoomImage} photo={value} key={index} number={index + 1} zoom={this.state.zoom} />)}
+                    {this.props.dreamTeam.map((value, index) => <Friend zoomImage={this.zoomImage} photo={value} key={index} number={index + 1} zoom={this.state.zoomOut} />)}
                 </section>
             )
         } else {
             return(
                 <section className={`float-end mx-1 row ${styles.border} ${styles.box}`}>
                     <h2 className='col-sm-12 text-center'>Dream Team</h2>
-                    <Friend zoomImage={this.zoomImage} photo={this.state.photo} zoom={this.state.zoom} number='0'/>
+                    <Friend zoomImage={this.zoomImage} photo={this.state.photo} zoom={this.state.zoomOut} number='0'/>
                 </section>
             )
         }

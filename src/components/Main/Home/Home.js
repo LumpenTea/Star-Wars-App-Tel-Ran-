@@ -3,12 +3,12 @@ import DreamTeam from './DreamTeam/DreamTeam'
 import FarGalaxy from '../FarGalaxy/FarGalaxy'
 import LukeSection from './LukeSection'
 
-const Home = ({ homePage }) => {
+const Home = ({ main }) => {
     return (
         <main className='clearfix'>
-            <LukeSection hero={homePage.hero} />
-            <DreamTeam dreamTeam={homePage.dreamTeam} />
-            <FarGalaxy />
+            <LukeSection hero={main.homePage.hero} />
+            <DreamTeam dreamTeam={main.homePage.dreamTeam} />
+            <FarGalaxy base_url={main.base_url} />
         </main>
     )
 }

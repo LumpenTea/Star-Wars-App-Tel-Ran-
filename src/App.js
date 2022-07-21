@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <div className='container-fluid'>
         <Header changePage={this.changePage} navItems={this.props.appData.header.navItems} />
-        <Main currentPage={this.state.currentPage} main={this.props.appData.main} />
+        <Main currentPage={this.state.currentPage} main={this.props.appData.main} navItems={this.props.appData.header.navItems} />
         <Footer />
       </div>
     );

@@ -3,7 +3,7 @@ import styles from './friend.module.css'
 
 const Friend = ({ photo, number, zoomImage, zoom }) => {
 
-    let friendStyle = zoom ? `${styles.bigBorder} col-sm-12 p-2` : 'col-sm-4 p-1 ';
+    let friendStyle = zoom ?  'col-sm-4 p-1 ' : `${styles.bigBorder} col-sm-12 p-2`;
 
     if (number === 7) {
         friendStyle += styles.bottomLeft;
