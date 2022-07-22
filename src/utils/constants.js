@@ -28,8 +28,15 @@ export const appData = {
     },
     main: {
         base_url: 'https://sw-info-api.herokuapp.com',
-        functions: {
-            checkTime: checkTime
+        checkTime() {
+            if (localStorage.getItem('time')) {
+                const thirtyDaysMiliseconds = 60 * 60 * 24 * 30 * 1000;
+                const timeAndThirty = +localStorage.getItem('time') + thirtyDaysMiliseconds;
+                return Date.now() > timeAndThirty;
+            } else {
+                localStorage.setItem('time', JSON.stringify(Date.now()));
+                checkTime(); //never get in else again until deleting time from local storage
+            }
         },
         homePage: {
             hero: mainHero,

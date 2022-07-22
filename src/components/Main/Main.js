@@ -8,11 +8,11 @@ const Main = ({ currentPage, main, navItems }) => {
 
     switch (currentPage) {
         case navItems[1]:
-            return <AboutMe base_url={main.base_url} checkTime={main.functions.checkTime} />
+            return <AboutMe base_url={main.base_url} checkTime={main.checkTime} />
         case navItems[2]:
             return <StarWars starWarsPage={main.starWarsPage} />
         case navItems[3]:
-            return <Contact base_url={main.base_url} checkTime={main.functions.checkTime} />
+            return <Contact base_url={main.base_url} checkTime={main.checkTime} />
         default: return <Home main={main} />
     }
 }
