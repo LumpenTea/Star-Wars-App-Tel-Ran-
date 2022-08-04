@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StarWarsContext } from "../../utils/constants";
 import AboutMe from "./AboutMe/AboutMe";
 import Contact from "./Contact/Contact";
 import Home from "./Home/Home";
 import StarWars from "./StarWarsInfo/StarWars";
 
-const Main = ({ currentPage, main, navItems }) => {
+const Main = () => {
 
-    switch (currentPage) {
-        case navItems[1]:
-            return <AboutMe base_url={main.base_url} checkTime={main.checkTime} />
-        case navItems[2]:
-            return <StarWars starWarsPage={main.starWarsPage} />
-        case navItems[3]:
-            return <Contact base_url={main.base_url} checkTime={main.checkTime} />
-        default: return <Home main={main} />
+    const data = useContext(StarWarsContext);
+
+    switch (data.page) {
+        case data.navItems[1]:
+            return <AboutMe />
+        case data.navItems[2]:
+            return <StarWars />
+        case data.navItems[3]:
+            return <Contact />
+        default: return <Home />
     }
 }
 

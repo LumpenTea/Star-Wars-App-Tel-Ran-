@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StarWarsContext } from '../../../utils/constants'
 import styles from './starWarsInfo.module.css'
 
-const StarWars = ({ starWarsPage }) => {
+const StarWars = () => {
+    
+    const data = useContext(StarWarsContext);
+    
     return (
         <div className={styles.info}>
-            <p>{starWarsPage.StarWarsInfo}</p>
+            <p>{data.main.starWarsPage.StarWarsInfo}</p>
         </div>
     )
 }

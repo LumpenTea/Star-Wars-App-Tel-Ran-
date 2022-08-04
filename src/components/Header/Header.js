@@ -1,10 +1,10 @@
 import Navigation from "./Navigation/Navigation";
 import styles from './header.module.css'
 
-const Header = ({ changePage, navItems }) => {
+const Header = () => {
     return (
         <header className={styles.header}>
-            <Navigation changePage={changePage} navItems={navItems} />
+            <Navigation />
             <h1 className='text-center py-4'>Luke Skywalker</h1>
         </header>
     )

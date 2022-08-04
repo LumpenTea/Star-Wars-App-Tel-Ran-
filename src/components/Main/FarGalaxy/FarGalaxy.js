@@ -1,38 +1,33 @@
 import styles from './farGalaxy.module.css';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { FunctionalContext } from '../../../utils/constants';
 
-class FarGalaxy extends React.Component {
-    
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         opening_crawl: 'Loading...'
-      }
-    }
+const FarGalaxy = () => {
 
-    getFilmCrawl = async() => {
+    const [openingCrawl, setOpeningCrawl] = useState('Loading...');
+    const base_url = useContext(FunctionalContext).base_url;
+
+    const getFilmCrawl = async () => {
         const film = Math.floor((Math.random() * 6) + 1);
-        const response = await fetch(`${this.props.base_url}/v1/films/${film}`);
+        const response = await fetch(`${base_url}/v1/films/${film}`);
         const data = await response.json();
-        this.setState({opening_crawl: data.opening_crawl});
+        setOpeningCrawl(data.opening_crawl);
         sessionStorage.setItem('opening_crawl', data.opening_crawl);
     }
 
-    componentDidMount(){
-        let text = sessionStorage.getItem('opening_crawl');
-        if(text){
-            this.setState({opening_crawl: text});
-        } else {
-            this.getFilmCrawl();
-        }
-    }
     
-    render() {
-        return (
-            <p className={styles.farGalaxy}>{this.state.opening_crawl}</p>
-        )
-    }
+    useEffect(() => {
+        let text = sessionStorage.getItem('opening_crawl');
+        if (text) {
+            setOpeningCrawl(text);
+        } else {
+            getFilmCrawl();
+        }
+    }, []);
+
+    return (
+        <p className={styles.farGalaxy}>{openingCrawl}</p>
+    )
 }
 
 export default FarGalaxy;

@@ -1,67 +1,67 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { StarWarsContext } from '../../../utils/constants';
 
-class AboutMe extends React.Component {
+const AboutMe = () => {
 
-  constructor(props) {
-    super(props)
+  const [isLoading, setIsLoading] = useState(true);
+  const [info, setInfo] = useState({});
 
-    this.state = {
-      isLoading: true
-    }
-  }
+  const functional = useContext(StarWarsContext);
 
   //Creating component//
   //Checking if local storage have time
   //If have not time -> set time -> set info from server
-  
+
   //Using Component//
   //Checking time with function from units constants
   //If return true -> set info from server -> set new time
   //if false -> set info to state from local storage -> set new time
 
-  getHeroData = async () => {
-    if (this.props.checkTime() || !localStorage.getItem('info')) {
-      const response = await fetch(`${this.props.base_url}/v1/peoples/1`);
+  const getHeroData = async () => {
+    if (functional.main.checkTime('aboutTime') || !localStorage.getItem('info')) {
+      const response = await fetch(`${functional.main.base_url}/v1/peoples/1`);
       const data = await response.json();
-      this.setState({
-        isLoading: false,
-        info: {
-          birthYear: data.birth_year,
-          gender: data.gender,
-          hairColor: data.hair_color,
-          eyeColor: data.eye_color,
-          weight: data.mass + 'kg',
-          height: data.height
-        }
-      }, () => localStorage.setItem('info', JSON.stringify(this.state.info)))
+      setInfo({
+        birthYear: data.birth_year,
+        gender: data.gender,
+        hairColor: data.hair_color,
+        eyeColor: data.eye_color,
+        weight: data.mass + 'kg',
+        height: data.height
+      });
+      setIsLoading(false);
     } else {
       const info = JSON.parse(localStorage.getItem('info'));
-      this.setState({isLoading: false, info: info});
+      setIsLoading(false);
+      setInfo(info);
     }
   }
 
-  componentDidMount() {
-    this.getHeroData();
-  }
+  useEffect(() => {
+    getHeroData();
+  }, []);
 
-  render() {
-
-    if (this.state.isLoading) {
-      return (
-        <div className='spinner-border text-light'></div>
-      )
-    } else {
-      return (
-        <div className='text-center'>
-          <h2>Gender: {this.state.info.gender} </h2>
-          <h2>Birthday: {this.state.info.birthYear}</h2>
-          <h2>Hair color: {this.state.info.hairColor}</h2>
-          <h2>Eye color: {this.state.info.eyeColor}</h2>
-          <h2>Weight: {this.state.info.weight}</h2>
-          <h2>Height: {this.state.info.height} </h2>
-        </div>
-      )
+  useEffect(() => {
+    if(!isLoading){
+      localStorage.setItem('info', JSON.stringify(info));
     }
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className='spinner-border text-light'></div>
+    )
+  } else {
+    return (
+      <div className='text-center'>
+        <h2>Gender: {info.gender} </h2>
+        <h2>Birthday: {info.birthYear}</h2>
+        <h2>Hair color: {info.hairColor}</h2>
+        <h2>Eye color: {info.eyeColor}</h2>
+        <h2>Weight: {info.weight}</h2>
+        <h2>Height: {info.height} </h2>
+      </div>
+    )
   }
 }
 

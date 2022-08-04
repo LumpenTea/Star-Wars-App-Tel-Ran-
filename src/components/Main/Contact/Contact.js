@@ -1,50 +1,54 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { FunctionalContext, StarWarsContext } from '../../../utils/constants';
 import style from './contact.module.css'
 
-class Contact extends React.Component {
+const Contact = () => {
 
-  constructor(props) {
-    super(props);
+  const [isLoading, setIsLoading] = useState(true);
+  const [planets, setPlanets] = useState([]);
 
-    this.state = {
-      isLoading: true
-    }
-  }
+  const functional = useContext(StarWarsContext);
 
-  getPlanets = async () => {
-    if (this.props.checkTime() || !localStorage.getItem('planets')) {
-      const response = await fetch(`${this.props.base_url}/v1/planets`);
+  const getPlanets = async () => {
+    if (functional.main.checkTime('contactTime') || !localStorage.getItem('planets')) {
+      const response = await fetch(`${functional.main.base_url}/v1/planets`);
       const data = await response.json();
-      this.setState({isLoading: false, planets: data.map(planet => planet.name)}, () => localStorage.setItem('planets', this.state.planets.toString()));
+      setIsLoading(false);
+      setPlanets(data.map(planet => planet.name));
     } else {
-      this.setState({isLoading: false, planets: localStorage.getItem('planets').split(',')})
+      setIsLoading(false);
+      setPlanets(localStorage.getItem('planets').split(','));
     }
   }
 
-  componentDidMount() {
-    this.getPlanets();
-  }
+  useEffect(() => {
+    getPlanets();
+  }, []);
 
-  render() {
-    if (this.state.isLoading) {
-      return (
-        <div className='spinner-border text-light'></div>
-      )
-    } else {
-      return (
-        <div className={style.grid}>
-          <input type='text' placeholder='First Name' className={style.topItem}></input>
-          <input type='text' placeholder='Last Name'></input>
-
-          <select>
-            {this.state.planets.map(value => <option key={value}>{value}</option>)}
-          </select>
-
-          <textarea placeholder='Your message'></textarea>
-          <button className={`${style.button} btn btn-success`}>Send</button>
-        </div>
-      )
+  useEffect(() => {
+    if(!isLoading){
+      localStorage.setItem('planets', planets.toString());
     }
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className='spinner-border text-light'></div>
+    )
+  } else {
+    return (
+      <div className={style.grid}>
+        <input type='text' placeholder='First Name' className={style.topItem}></input>
+        <input type='text' placeholder='Last Name'></input>
+
+        <select>
+          {planets.map(value => <option key={value}>{value}</option>)}
+        </select>
+
+        <textarea placeholder='Your message'></textarea>
+        <button className={`${style.button} btn btn-success`}>Send</button>
+      </div>
+    )
   }
 }
 

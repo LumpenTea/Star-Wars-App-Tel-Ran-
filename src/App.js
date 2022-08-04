@@ -1,33 +1,30 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import { FunctionalContext, StarWarsContext } from './utils/constants';
 
-class App extends React.Component {
+const App = () => {
 
-  constructor(props) {
-    super(props)
+  const appData = useContext(FunctionalContext);
+  const [page, setPage] = useState(appData.header.navItems[0]);
 
-    this.state = {
-      currentPage: this.props.appData.header.navItems[0]
-    }
-  }
-
-  changePage = page => {
-    this.setState({ currentPage: page });
-  }
-
-
-  render() {
-    return (
+  return (
+    <StarWarsContext.Provider value={{
+      setPage: setPage,
+      page: page,
+      navItems: appData.header.navItems,
+      main: appData.main
+    }}>
       <div className='container-fluid'>
-        <Header changePage={this.changePage} navItems={this.props.appData.header.navItems} />
-        <Main currentPage={this.state.currentPage} main={this.props.appData.main} navItems={this.props.appData.header.navItems} />
+        <Header />
+        <Main />
         <Footer />
       </div>
-    );
-  }
+    </StarWarsContext.Provider>
+  );
+
 }
 
 export default App;

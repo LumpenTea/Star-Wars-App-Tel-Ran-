@@ -1,3 +1,4 @@
+import React from 'react';
 import mainHero from '../images/main.jpg';
 import friend1 from '../images/friend1.jpg';
 import friend2 from '../images/friend2.jpg';
@@ -9,17 +10,8 @@ import friend7 from '../images/friend7.jpg';
 import friend8 from '../images/friend8.jpg';
 import friend9 from '../images/friend9.jpg';
 
-
-const checkTime = () => {
-    if (localStorage.getItem('time')) {
-        const thirtyDaysMiliseconds = 60 * 60 * 24 * 30 * 1000;
-        const timeAndThirty = +localStorage.getItem('time') + thirtyDaysMiliseconds;
-        return Date.now() > timeAndThirty;
-    } else {
-        localStorage.setItem('time', JSON.stringify(Date.now()));
-        checkTime(); //never get in else again until deleting time from local storage
-    }
-}
+export const StarWarsContext = React.createContext();
+export const FunctionalContext = React.createContext();
 
 export const appData = {
 
@@ -28,14 +20,14 @@ export const appData = {
     },
     main: {
         base_url: 'https://sw-info-api.herokuapp.com',
-        checkTime() {
-            if (localStorage.getItem('time')) {
+        checkTime(time) {
+            if (localStorage.getItem(time)) {
                 const thirtyDaysMiliseconds = 60 * 60 * 24 * 30 * 1000;
-                const timeAndThirty = +localStorage.getItem('time') + thirtyDaysMiliseconds;
+                const timeAndThirty = +localStorage.getItem(time) + thirtyDaysMiliseconds;
                 return Date.now() > timeAndThirty;
             } else {
-                localStorage.setItem('time', JSON.stringify(Date.now()));
-                checkTime(); //never get in else again until deleting time from local storage
+                localStorage.setItem(time, JSON.stringify(Date.now()));
+                this.checkTime(time); //never get in else again until deleting time from local storage
             }
         },
         homePage: {

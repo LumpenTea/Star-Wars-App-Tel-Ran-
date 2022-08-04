@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StarWarsContext } from '../../../utils/constants';
 
-const NavItem = ({itemTitle, changePage}) => {
+const NavItem = ({itemTitle}) => {
+    
+    const data = useContext(StarWarsContext);
+    
     return (
-        <li onClick={() => changePage(itemTitle)} className='nav-item btn btn-danger mx-1' > {itemTitle}</li>
+        <li onClick={() => data.setPage(itemTitle)} className='nav-item btn btn-danger mx-1' > {itemTitle}</li>
     )
 }
 
