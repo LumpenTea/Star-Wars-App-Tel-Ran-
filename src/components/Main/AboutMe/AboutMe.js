@@ -6,6 +6,7 @@ const AboutMe = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [info, setInfo] = useState({});
+  const [infoString, setInfoString] = useState('');
 
   const main = useContext(StarWarsContext).main;
 
@@ -22,14 +23,16 @@ const AboutMe = () => {
     if (main.checkTime('aboutTime') || !localStorage.getItem('info')) {
       const response = await fetch(`${main.base_url}/v1/peoples/1`);
       const data = await response.json();
-      setInfo({
+      let infoData = {
         birthYear: data.birth_year,
         gender: data.gender,
         hairColor: data.hair_color,
         eyeColor: data.eye_color,
         weight: data.mass + 'kg',
         height: data.height
-      });
+      }
+      setInfoString(JSON.stringify(infoData));
+      setInfo(infoData);
       setIsLoading(false);
     } else {
       const info = JSON.parse(localStorage.getItem('info'));
@@ -40,13 +43,11 @@ const AboutMe = () => {
 
   useEffect(() => {
     getHeroData();
-  }, []);
-
-  useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('info', JSON.stringify(info));
+    if(infoString){
+      console.log('Updating storage');
+      localStorage.setItem('info', infoString);
     }
-  }, [isLoading]);
+  }, [infoString]);
 
   if (isLoading) {
     return (

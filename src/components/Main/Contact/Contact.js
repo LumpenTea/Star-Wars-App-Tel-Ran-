@@ -6,6 +6,7 @@ const Contact = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [planets, setPlanets] = useState([]);
+  const[planetsString, setPlanetsString] = useState('');
 
   const main = useContext(StarWarsContext).main;
 
@@ -14,7 +15,9 @@ const Contact = () => {
       const response = await fetch(`${main.base_url}/v1/planets`);
       const data = await response.json();
       setIsLoading(false);
-      setPlanets(data.map(planet => planet.name));
+      let planets = data.map(planet => planet.name);
+      setPlanetsString(planets.toString());
+      setPlanets(planets);
     } else {
       setIsLoading(false);
       setPlanets(localStorage.getItem('planets').split(','));
@@ -23,13 +26,10 @@ const Contact = () => {
 
   useEffect(() => {
     getPlanets();
-  }, []);
-
-  useEffect(() => {
-    if(!isLoading){
-      localStorage.setItem('planets', planets.toString());
+    if(planetsString){
+      localStorage.setItem('planets', planetsString);
     }
-  }, [isLoading]);
+  }, [planetsString]);
 
   if (isLoading) {
     return (
