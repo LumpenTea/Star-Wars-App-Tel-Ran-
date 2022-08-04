@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FunctionalContext, StarWarsContext } from '../../../utils/constants';
+import { StarWarsContext } from '../../../utils/constants';
 import style from './contact.module.css'
 
 const Contact = () => {
@@ -7,11 +7,11 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [planets, setPlanets] = useState([]);
 
-  const functional = useContext(StarWarsContext);
+  const main = useContext(StarWarsContext).main;
 
   const getPlanets = async () => {
-    if (functional.main.checkTime('contactTime') || !localStorage.getItem('planets')) {
-      const response = await fetch(`${functional.main.base_url}/v1/planets`);
+    if (main.checkTime('contactTime') || !localStorage.getItem('planets')) {
+      const response = await fetch(`${main.base_url}/v1/planets`);
       const data = await response.json();
       setIsLoading(false);
       setPlanets(data.map(planet => planet.name));

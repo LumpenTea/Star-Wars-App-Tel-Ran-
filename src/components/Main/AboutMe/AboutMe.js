@@ -6,7 +6,7 @@ const AboutMe = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [info, setInfo] = useState({});
 
-  const functional = useContext(StarWarsContext);
+  const main = useContext(StarWarsContext).main;
 
   //Creating component//
   //Checking if local storage have time
@@ -18,8 +18,8 @@ const AboutMe = () => {
   //if false -> set info to state from local storage -> set new time
 
   const getHeroData = async () => {
-    if (functional.main.checkTime('aboutTime') || !localStorage.getItem('info')) {
-      const response = await fetch(`${functional.main.base_url}/v1/peoples/1`);
+    if (main.checkTime('aboutTime') || !localStorage.getItem('info')) {
+      const response = await fetch(`${main.base_url}/v1/peoples/1`);
       const data = await response.json();
       setInfo({
         birthYear: data.birth_year,

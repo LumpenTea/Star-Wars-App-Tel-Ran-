@@ -4,12 +4,12 @@ import NavItem from './NavItem'
 
 const Navigation = () => {
     
-    const data = useContext(StarWarsContext);
+    const navItems = useContext(StarWarsContext).navItems;
 
     return (
         <nav className='fixed-top mt-2 ms-4'>
             <ul className='nav'>
-                {data.navItems.map(item => <NavItem key={item} itemTitle={item} />)}
+                {navItems.map(item => <NavItem key={item} itemTitle={item} />)}
             </ul>
         </nav>
     )

@@ -1,11 +1,11 @@
 import styles from './farGalaxy.module.css';
 import React, { useContext, useEffect, useState } from 'react';
-import { FunctionalContext } from '../../../utils/constants';
+import { StarWarsContext } from '../../../utils/constants';
 
 const FarGalaxy = () => {
 
     const [openingCrawl, setOpeningCrawl] = useState('Loading...');
-    const base_url = useContext(FunctionalContext).base_url;
+    const base_url = useContext(StarWarsContext).main.base_url;
 
     const getFilmCrawl = async () => {
         const film = Math.floor((Math.random() * 6) + 1);

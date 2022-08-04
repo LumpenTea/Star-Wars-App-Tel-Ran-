@@ -8,7 +8,7 @@ const DreamTeam = () => {
     const [zoomOut, setZoomOut] = useState(true);
     const [photo, setPhoto] = useState(null);
 
-    const data = useContext(StarWarsContext).main.homePage;
+    const dreamTeam = useContext(StarWarsContext).main.homePage.dreamTeam;
 
     const zoomImage = (photo, zoom) => {
         setZoomOut(zoom);
@@ -19,7 +19,7 @@ const DreamTeam = () => {
         return (
             <section className={`float-end mx-1 row ${styles.border} ${styles.box}`}>
                 <h2 className='col-sm-12 text-center'>Dream Team</h2>
-                {data.dreamTeam.map((value, index) => <Friend zoomImage={zoomImage} photo={value} key={index} number={index + 1} zoom={zoomOut} />)}
+                {dreamTeam.map((value, index) => <Friend zoomImage={zoomImage} photo={value} key={index} number={index + 1} zoom={zoomOut} />)}
             </section>
         )
     } else {
