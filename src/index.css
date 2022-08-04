@@ -4,4 +4,17 @@ body {
   color: goldenrod;
   background-image: url(./images/sky.jpg);
   background-attachment: fixed;
+  animation-name: space;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes space {
+  0%{
+    background-position: 0px;
+  }
+  100%{
+    background-position: 1280px;
+  }
 }

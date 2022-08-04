@@ -1,0 +1,26 @@
+.about{
+    animation-name: intro;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    border-radius: 50%;
+    text-align: center;
+    width: fit-content;
+}
+
+@keyframes intro{
+    0%{
+        transform: scale(0.5);
+    }
+    50%{
+        transfrom: scale(1);
+    }
+    55%{
+        background-color: rgb(192,192,192, 0.5);
+        box-shadow: 2px 2px 2px 4px rgb(192,192,192, 0.5);
+    }
+    100%{
+        background-color: transparent;
+        box-shadow: 2px 2px 2px 50px rgb(192,192,192, 0);
+    }
+}

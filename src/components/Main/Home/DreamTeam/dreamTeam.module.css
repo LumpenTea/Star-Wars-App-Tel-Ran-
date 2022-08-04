@@ -5,4 +5,26 @@
 
 .box{
     width: 35vw;
+    display: flex;
+    justify-content: center;
+}
+
+.box > h4{
+    width: fit-content;
+    animation-name: click;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes click{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
 }

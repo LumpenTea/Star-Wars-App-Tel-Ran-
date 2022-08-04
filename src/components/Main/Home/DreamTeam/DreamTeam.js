@@ -20,6 +20,7 @@ const DreamTeam = () => {
             <section className={`float-end mx-1 row ${styles.border} ${styles.box}`}>
                 <h2 className='col-sm-12 text-center'>Dream Team</h2>
                 {dreamTeam.map((value, index) => <Friend zoomImage={zoomImage} photo={value} key={index} number={index + 1} zoom={zoomOut} />)}
+                <h4 className='col-sm-12 text-center'>Click on us!</h4>
             </section>
         )
     } else {
@@ -27,6 +28,7 @@ const DreamTeam = () => {
             <section className={`float-end mx-1 row ${styles.border} ${styles.box}`}>
                 <h2 className='col-sm-12 text-center'>Dream Team</h2>
                 <Friend zoomImage={zoomImage} photo={photo} zoom={zoomOut} number='0' />
+                <h4 className='col-sm-12 text-center'>Click on us!</h4>
             </section>
         )
     }

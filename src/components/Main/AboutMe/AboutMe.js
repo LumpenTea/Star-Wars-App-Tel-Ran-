@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StarWarsContext } from '../../../utils/constants';
+import style from './about.module.css'
 
 const AboutMe = () => {
 
@@ -42,7 +43,7 @@ const AboutMe = () => {
   }, []);
 
   useEffect(() => {
-    if(!isLoading){
+    if (!isLoading) {
       localStorage.setItem('info', JSON.stringify(info));
     }
   }, [isLoading]);
@@ -53,13 +54,15 @@ const AboutMe = () => {
     )
   } else {
     return (
-      <div className='text-center'>
-        <h2>Gender: {info.gender} </h2>
-        <h2>Birthday: {info.birthYear}</h2>
-        <h2>Hair color: {info.hairColor}</h2>
-        <h2>Eye color: {info.eyeColor}</h2>
-        <h2>Weight: {info.weight}</h2>
-        <h2>Height: {info.height} </h2>
+      <div className='d-flex justify-content-center'>
+        <div className={style.about}>
+          <h2>Gender: {info.gender} </h2>
+          <h2>Birthday: {info.birthYear}</h2>
+          <h2>Hair color: {info.hairColor}</h2>
+          <h2>Eye color: {info.eyeColor}</h2>
+          <h2>Weight: {info.weight}</h2>
+          <h2>Height: {info.height} </h2>
+        </div>
       </div>
     )
   }
