@@ -1,13 +1,10 @@
-import { useContext } from "react";
-import { StarWarsContext } from "../../../utils/constants";
+import mainHero from '../../../images/main.jpg'
 
 const LukeSection = () => {
     
-    const hero = useContext(StarWarsContext).main.homePage.hero;
-    
     return (
         <section className='float-start me-3 w-25'>
-            <img className='w-100' src={hero} alt='Luke'></img>
+            <img className='w-100' src={mainHero} alt='Luke'></img>
         </section>
     )
 }

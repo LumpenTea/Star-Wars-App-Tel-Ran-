@@ -8,7 +8,7 @@ const StarWars = () => {
     
     return (
         <div className={styles.info}>
-            <p>{data.main.starWarsPage.StarWarsInfo}</p>
+            <p>{data.starWarsInfo}</p>
         </div>
     )
 }

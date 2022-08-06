@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react';
 import Friend from './Friend/Friend';
 import styles from './dreamTeam.module.css'
-import { StarWarsContext } from '../../../../utils/constants';
+import { dreamTeam } from '../../../../utils/constants';
 
 const DreamTeam = () => {
 
     const [zoomOut, setZoomOut] = useState(true);
     const [photo, setPhoto] = useState(null);
-
-    const dreamTeam = useContext(StarWarsContext).main.homePage.dreamTeam;
 
     const zoomImage = (photo, zoom) => {
         setZoomOut(zoom);
