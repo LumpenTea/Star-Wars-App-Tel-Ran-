@@ -42,7 +42,6 @@ const AboutMe = () => {
   useEffect(() => {
     getHeroData();
     if(infoString){
-      console.log('Updating storage');
       localStorage.setItem('info', infoString);
     }
   }, [infoString]);
