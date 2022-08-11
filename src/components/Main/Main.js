@@ -10,11 +10,11 @@ const Main = () => {
     const data = useContext(StarWarsContext);
 
     switch (data.page) {
-        case data.navItems[1]:
+        case data.navItems[1].route:
             return <AboutMe />
-        case data.navItems[2]:
+        case data.navItems[2].route:
             return <StarWars />
-        case data.navItems[3]:
+        case data.navItems[3].route:
             return <Contact />
         default: return <Home />
     }

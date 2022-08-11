@@ -1,12 +1,8 @@
-import React, { useContext } from 'react'
-import { StarWarsContext } from '../../../utils/constants';
-
-const NavItem = ({ itemTitle }) => {
-
-    const setPage = useContext(StarWarsContext).setPage;
-
+const NavItem = ({ item }) => {
     return (
-        <li onClick={() => setPage(itemTitle)} className='nav-item btn btn-danger mx-1' >{itemTitle}</li>
+        <li className='nav-item btn btn-danger mx-1' >
+            <a href={`#/${item.route}`}>{item.title}</a>
+        </li>
     )
 }
 

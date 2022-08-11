@@ -13,3 +13,12 @@
 .float-start > img {
     box-shadow: rgba(60, 69, 67, 0.6) 10px 10px;
 }
+
+a{
+    color: goldenrod;
+    text-decoration: none;
+}
+
+a:hover{
+    color: goldenrod;
+}
