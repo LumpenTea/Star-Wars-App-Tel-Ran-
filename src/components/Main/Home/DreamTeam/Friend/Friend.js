@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { characters, StarWarsContext } from '../../../../../utils/constants'
 
-const Friend = ({ photo, updateHero }) => {
+const Friend = ({ friend }) => {
 
+    const data = useContext(StarWarsContext);
     return (
-        <img onClick={() => updateHero(photo)} src={photo} className='col-sm-4 p-1' alt='friend'></img>
+        <a className='col-sm-4 p-1' href={`#/${data.page}/${data.hero}`}><img onClick={() => data.setHero(friend)} src={characters[friend].img} className='col-sm-12' alt='friend'></img></a>
     )
 }
 

@@ -16,7 +16,7 @@ const Main = () => {
             return <StarWars />
         case data.navItems[3].route:
             return <Contact />
-        default: return <Home />
+        default: return <Home hero={data.hero} setHero={data.setHero} />
     }
 }
 

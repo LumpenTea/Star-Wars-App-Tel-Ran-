@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { base_url, checkTime } from '../../../utils/constants';
+import React, { useContext, useEffect, useState } from 'react'
+import { characters, checkTime, StarWarsContext } from '../../../utils/constants';
 import style from './about.module.css'
 
 const AboutMe = () => {
@@ -7,6 +7,7 @@ const AboutMe = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [info, setInfo] = useState({});
   const [infoString, setInfoString] = useState('');
+  const {hero} = useContext(StarWarsContext);
 
   //Creating component//
   //Checking if local storage have time
@@ -18,8 +19,8 @@ const AboutMe = () => {
   //if false -> set info to state from local storage -> set new time
 
   const getHeroData = async () => {
-    if (checkTime('aboutTime') || !localStorage.getItem('info')) {
-      const response = await fetch(`${base_url}/v1/peoples/1`);
+    if (checkTime('aboutTime') || !localStorage.getItem(`${hero}`)) {
+      const response = await fetch(characters[hero].url);
       const data = await response.json();
       let infoData = {
         birthYear: data.birth_year,
@@ -33,7 +34,7 @@ const AboutMe = () => {
       setInfo(infoData);
       setIsLoading(false);
     } else {
-      const info = JSON.parse(localStorage.getItem('info'));
+      const info = JSON.parse(localStorage.getItem(`${hero}`));
       setIsLoading(false);
       setInfo(info);
     }
@@ -42,9 +43,9 @@ const AboutMe = () => {
   useEffect(() => {
     getHeroData();
     if(infoString){
-      localStorage.setItem('info', infoString);
+      localStorage.setItem(`${hero}`, infoString);
     }
-  }, [infoString]);
+  }, [infoString, hero]);
 
   if (isLoading) {
     return (
