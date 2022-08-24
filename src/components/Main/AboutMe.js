@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { characters, checkTime, StarWarsContext } from '../../../utils/constants';
+import { characters, checkTime, StarWarsContext } from '../../utils/constants';
 import style from './about.module.css'
 
 const AboutMe = () => {

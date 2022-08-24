@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { base_url, checkTime } from '../../../utils/constants';
+import { base_url, checkTime } from '../../utils/constants';
 import style from './contact.module.css'
 
 const Contact = () => {

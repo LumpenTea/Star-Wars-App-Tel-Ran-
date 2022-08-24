@@ -1,6 +1,6 @@
 import styles from './farGalaxy.module.css';
 import React, { useEffect, useState } from 'react';
-import { base_url } from '../../../utils/constants';
+import { base_url } from '../../utils/constants';
 
 const FarGalaxy = () => {
 

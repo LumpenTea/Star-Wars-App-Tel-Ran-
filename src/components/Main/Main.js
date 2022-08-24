@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { StarWarsContext } from "../../utils/constants";
-import AboutMe from "./AboutMe/AboutMe";
-import Contact from "./Contact/Contact";
+import AboutMe from "./AboutMe";
+import Contact from "./Contact";
 import Home from "./Home/Home";
-import StarWars from "./StarWarsInfo/StarWars";
+import StarWars from "./StarWars";
 
 const Main = () => {
 

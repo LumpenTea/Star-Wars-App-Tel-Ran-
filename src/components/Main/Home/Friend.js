@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { characters, StarWarsContext } from '../../../../../utils/constants'
+import { characters, StarWarsContext } from '../../../utils/constants'
 
 const Friend = ({ friend }) => {
 

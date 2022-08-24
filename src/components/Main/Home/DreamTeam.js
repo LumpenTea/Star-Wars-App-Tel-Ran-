@@ -1,6 +1,6 @@
-import Friend from './Friend/Friend';
+import Friend from './Friend';
 import styles from './dreamTeam.module.css'
-import { dreamTeam, StarWarsContext } from '../../../../utils/constants';
+import { dreamTeam, StarWarsContext } from '../../../utils/constants';
 import { useContext } from 'react';
 
 const DreamTeam = () => {

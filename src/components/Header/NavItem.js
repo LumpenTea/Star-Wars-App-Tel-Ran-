@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { StarWarsContext } from "../../../utils/constants"
+import { StarWarsContext } from "../../utils/constants"
 
 const NavItem = ({ item }) => {
     const{hero} = useContext(StarWarsContext);

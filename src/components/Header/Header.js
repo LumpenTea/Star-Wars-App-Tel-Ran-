@@ -1,4 +1,4 @@
-import Navigation from "./Navigation/Navigation";
+import Navigation from "./Navigation";
 import styles from './header.module.css'
 import { useContext } from "react";
 import { characters, StarWarsContext } from "../../utils/constants";

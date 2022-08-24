@@ -15,7 +15,7 @@ const App = () => {
     const route = window.location.hash.split('/');
     const page = navItems.current.find(item => route[1] === item.route);
     const heroIndex = dreamTeam.find(item => route[2] === item);
-    if(heroIndex) setHero(route[2]);
+    heroIndex ? setHero(route[2]) : setHero(dreamTeam[0]);
     return page ? page.route : navItems.current[0].route;
   }
 

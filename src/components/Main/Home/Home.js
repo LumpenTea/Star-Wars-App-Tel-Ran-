@@ -1,6 +1,6 @@
 import React from 'react'
-import DreamTeam from './DreamTeam/DreamTeam'
-import FarGalaxy from '../FarGalaxy/FarGalaxy'
+import DreamTeam from './DreamTeam'
+import FarGalaxy from '../FarGalaxy'
 import LukeSection from './LukeSection'
 
 const Home = ({ hero, setHero }) => {

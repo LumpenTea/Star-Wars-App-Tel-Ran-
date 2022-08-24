@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StarWarsContext } from '../../../utils/constants';
+import { StarWarsContext } from '../../utils/constants';
 import NavItem from './NavItem'
 
 const Navigation = () => {
