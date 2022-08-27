@@ -5,7 +5,7 @@ const Friend = ({ friend }) => {
 
     const data = useContext(StarWarsContext);
     return (
-        <a className='col-sm-4 p-1' href={`#/${data.page}/${data.hero}`}><img onClick={() => data.setHero(friend)} src={characters[friend].img} className='col-sm-12' alt='friend'></img></a>
+        <a className='col-sm-4 p-1' href={`#/${data.page}/${friend}`}><img src={characters[friend].img} className='col-sm-12' alt='friend'></img></a>
     )
 }
 
