@@ -1,12 +1,13 @@
 import { useContext } from "react"
 import { StarWarsContext } from "../../utils/constants"
+import { Link } from 'react-router-dom'
 
 const NavItem = ({ item }) => {
-    const{hero} = useContext(StarWarsContext);
+    const { hero } = useContext(StarWarsContext);
 
     return (
         <li className='nav-item btn btn-danger mx-1' >
-            <a href={`#/${item.route}/${hero}`}>{item.title}</a>
+            <Link to={`${item.route}/${hero}`}>{item.title}</Link>
         </li>
     )
 }

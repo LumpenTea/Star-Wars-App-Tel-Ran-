@@ -69,13 +69,14 @@ export const characters = {
     }
 };
 
-export const checkTime = (time) => {
+export const checkTime = (time, hero) => {
     if (localStorage.getItem(time)) {
         const thirtyDaysMiliseconds = 60 * 60 * 24 * 30 * 1000;
         const timeAndThirty = +localStorage.getItem(time) + thirtyDaysMiliseconds;
         return Date.now() > timeAndThirty;
     } else {
-        localStorage.setItem(time, JSON.stringify(Date.now()));
+        const timeName = hero ? `${hero}Time` : time;
+        localStorage.setItem(timeName, JSON.stringify(Date.now()));
         checkTime(time); //never get in else again until deleting time from local storage
     }
 }

@@ -4,20 +4,22 @@ import AboutMe from "./AboutMe";
 import Contact from "./Contact";
 import Home from "./Home/Home";
 import StarWars from "./StarWars";
+import { Routes, Route } from 'react-router-dom';
+import Error from "./Error";
 
 const Main = () => {
 
-    const data = useContext(StarWarsContext);
+    const {navItems, setHero} = useContext(StarWarsContext);
 
-    switch (data.page) {
-        case data.navItems[1].route:
-            return <AboutMe />
-        case data.navItems[2].route:
-            return <StarWars />
-        case data.navItems[3].route:
-            return <Contact />
-        default: return <Home hero={data.hero} setHero={data.setHero} />
-    }
+    return(
+        <Routes>
+            {['/', '/:hero', navItems[0].route, `/${navItems[0].route}/:hero`].map(element => <Route path={element} key={element} element={<Home setHero={setHero} />} />)}
+            <Route path={`${navItems[1].route}/:hero`} element={<AboutMe />} />
+            <Route path={`${navItems[2].route}/:hero`} element={<StarWars />} />
+            <Route path={`${navItems[3].route}/:hero`} element={<Contact />} />
+            <Route path={'*'} element={<Error />} />
+        </Routes>
+    )
 }
 
 export default Main;

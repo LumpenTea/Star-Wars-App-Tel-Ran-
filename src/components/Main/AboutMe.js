@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { characters, checkTime, StarWarsContext } from '../../utils/constants';
+import React, { useEffect, useState } from 'react'
+import { characters, checkTime } from '../../utils/constants';
 import style from './about.module.css'
 
 const AboutMe = () => {
@@ -7,7 +7,7 @@ const AboutMe = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [info, setInfo] = useState({});
   const [infoString, setInfoString] = useState('');
-  const {hero} = useContext(StarWarsContext);
+  const hero = window.location.href.split('/')[4];
 
   //Creating component//
   //Checking if local storage have time
@@ -19,7 +19,7 @@ const AboutMe = () => {
   //if false -> set info to state from local storage -> set new time
 
   const getHeroData = async () => {
-    if (checkTime('aboutTime') || !localStorage.getItem(`${hero}`)) {
+    if (checkTime('aboutTime', hero) || !localStorage.getItem(`${hero}`)) {
       const response = await fetch(characters[hero].url);
       const data = await response.json();
       let infoData = {
@@ -42,7 +42,7 @@ const AboutMe = () => {
 
   useEffect(() => {
     getHeroData();
-    if(infoString){
+    if (infoString) {
       localStorage.setItem(`${hero}`, infoString);
     }
   }, [infoString, hero]);
