@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import DreamTeam from './DreamTeam'
 import FarGalaxy from '../FarGalaxy'
 import LukeSection from './LukeSection'
@@ -8,6 +8,10 @@ const Home = ({ setHero }) => {
 
     let hero = useParams().hero;
     hero = hero ? hero : 'luke';
+
+    useEffect(() => {
+        setHero(hero);
+    }, [hero]);
 
     return (
         <main className='clearfix'>

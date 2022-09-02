@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { characters, checkTime } from '../../utils/constants';
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { characters, checkTime, StarWarsContext } from '../../utils/constants';
 import style from './about.module.css'
 
 const AboutMe = () => {
@@ -7,7 +8,8 @@ const AboutMe = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [info, setInfo] = useState({});
   const [infoString, setInfoString] = useState('');
-  const hero = window.location.href.split('/')[4];
+  const { hero } = useParams();
+  const { setHero } = useContext(StarWarsContext);
 
   //Creating component//
   //Checking if local storage have time
@@ -41,6 +43,7 @@ const AboutMe = () => {
   }
 
   useEffect(() => {
+    setHero(hero);
     getHeroData();
     if (infoString) {
       localStorage.setItem(`${hero}`, infoString);
